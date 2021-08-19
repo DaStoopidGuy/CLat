@@ -1,1 +1,0 @@
-release:cd server && go build && ./server
