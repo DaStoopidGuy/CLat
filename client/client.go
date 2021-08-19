@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"net"
 	"os"
@@ -9,8 +10,15 @@ import (
 
 
 func main() {
+	var ipAddr string
+
+	flag.StringVar(&ipAddr, "a", "127.0.0.1", "Specify ip address. Default is localhost")
+	flag.Parse()
+
+	var ip = fmt.Sprint(ipAddr, ":8642")
+
 	// Connect to server
-	conn, err := net.Dial("tcp", ":8642")
+	conn, err := net.Dial("tcp", ip)
 	if err != nil {
 		panic(err)
 	}
